@@ -23,9 +23,9 @@ function getComputerChoice() {
 
 // Create a function that plays a single round of Rock Paper Scissors
 // Takes two parameters "playerSelection" and "computerSelection".
-function playRound(playerSelection,computerSelection) {
+function playRound(playerSelection) {
     //Ensure playerSelection is case insensitive.
-    playerSelection = playerSelection.toLowerCase();
+    const computerSelection = getComputerChoice();
     //Check the winner of the round by comparing the selections. Return the result in a string such as "You Lose! Rock beats Scissors!"
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
@@ -56,41 +56,27 @@ function playRound(playerSelection,computerSelection) {
     }
 }
 
-// Create a function called game()
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    const playerChoice = 'rock';
+    let result = playRound(playerChoice);
+    console.log(result);
+});
 
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    const playerChoice = 'paper';
+    let result = playRound(playerChoice);
+    console.log(result);
+});
 
-function game() {
-    // Call playRound() inside the game function
-    // Play a 5 round match
-    let score = 0;
-    for (let i=0; i<5; i++) {
-        // Ask the user for their solection
-        const playerChoice = prompt("Choose Rock, Paper or Scissors");
-        // Get the computers selection
-        const computerChoice = getComputerChoice();
-        let result = playRound(playerChoice,computerChoice);
-        console.log(result);
-        // Check if the ouput contains the word "win"
-        if (result.includes('win')) {
-            // Keep score
-            score += 2;
-        } else if (result.includes('draw')) {
-            score += 1;
-        }
-        console.log(`${score/2} out of ${i+1}`);
-        
-    }
-    // Report a winner at the end of match.//
-    if (score >= 6) {
-        return `You win! Your score was ${score/2} out of 5`;
-    } else if (score === 5) {
-        return "Draw!";
-    } else {
-        return `You lose! Your score was ${score/2} out of 5`
-    }
-}
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => {
+    const playerChoice = 'scissors';
+    let result = playRound(playerChoice);
+    console.log(result);
+});
 
-console.log(game());
 
 // const playerSelection = "RoCK";
 // const computerSelection = getComputerChoice();
