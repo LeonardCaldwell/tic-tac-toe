@@ -56,28 +56,47 @@ function playRound(playerSelection) {
     }
 }
 
+let playerScore = 0;
+let compScore = 0;
+let rounds = 1;
+
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', () => {
     const playerChoice = 'rock';
-    let result = playRound(playerChoice);
-    console.log(result);
+    const result = playRound(playerChoice);
+    if (result.includes('win')) {
+        playerScore += 1;
+    } else if (result.includes('lose')) {
+        compScore += 1;
+    }
+    container.textContent = `${result} Player ${playerScore} vs Computer ${compScore}`;
+    rounds++;
 });
 
 const paper = document.querySelector('#paper');
 paper.addEventListener('click', () => {
     const playerChoice = 'paper';
-    let result = playRound(playerChoice);
-    console.log(result);
+    const result = playRound(playerChoice);
+    if (result.includes('win')) {
+        playerScore += 1;
+    } else if (result.includes('lose')) {
+        compScore += 1;
+    }
+    container.textContent = `${result} Player ${playerScore} vs Computer ${compScore}`;
+    rounds++;
 });
 
 const scissors = document.querySelector('#scissors');
 scissors.addEventListener('click', () => {
     const playerChoice = 'scissors';
-    let result = playRound(playerChoice);
-    console.log(result);
+    const result = playRound(playerChoice);
+    if (result.includes('win')) {
+        playerScore += 1;
+    } else if (result.includes('lose')) {
+        compScore += 1;
+    }
+    container.textContent = `${result} Player ${playerScore} vs Computer ${compScore}`;
+    rounds++;
 });
 
-
-// const playerSelection = "RoCK";
-// const computerSelection = getComputerChoice();
-// console.log(playRound(playerSelection,computerSelection));
+const container = document.querySelector('#container');
