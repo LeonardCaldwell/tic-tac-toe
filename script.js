@@ -60,43 +60,29 @@ let playerScore = 0;
 let compScore = 0;
 let rounds = 1;
 
-const rock = document.querySelector('#rock');
-rock.addEventListener('click', () => {
-    const playerChoice = 'rock';
-    const result = playRound(playerChoice);
-    if (result.includes('win')) {
-        playerScore += 1;
-    } else if (result.includes('lose')) {
-        compScore += 1;
-    }
-    container.textContent = `${result} Player ${playerScore} vs Computer ${compScore}`;
-    rounds++;
-});
-
-const paper = document.querySelector('#paper');
-paper.addEventListener('click', () => {
-    const playerChoice = 'paper';
-    const result = playRound(playerChoice);
-    if (result.includes('win')) {
-        playerScore += 1;
-    } else if (result.includes('lose')) {
-        compScore += 1;
-    }
-    container.textContent = `${result} Player ${playerScore} vs Computer ${compScore}`;
-    rounds++;
-});
-
-const scissors = document.querySelector('#scissors');
-scissors.addEventListener('click', () => {
-    const playerChoice = 'scissors';
-    const result = playRound(playerChoice);
-    if (result.includes('win')) {
-        playerScore += 1;
-    } else if (result.includes('lose')) {
-        compScore += 1;
-    }
-    container.textContent = `${result} Player ${playerScore} vs Computer ${compScore}`;
-    rounds++;
-});
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const result = playRound(button.id);
+        if (result.includes('win')) {
+            playerScore += 1;
+        } else if (result.includes('lose')) {
+            compScore += 1;
+        }
+        if (playerScore >= 5) {
+            container.textContent = `Game Over - You Win!!! Player ${playerScore}/5, Computer ${compScore}/5`;
+            playerScore = 0;
+            compScore = 0;
+        } else if (compScore >= 5) {
+            container.textContent = `Game Over - You Lose!!! Player ${playerScore}/5, Computer ${compScore}/5`;
+            playerScore = 0;
+            compScore = 0;
+        } else {
+            container.textContent = `${result} Player: ${playerScore}/5, Computer ${compScore}/5`;
+            rounds++;
+        }
+        
+    })
+})
 
 const container = document.querySelector('#container');
